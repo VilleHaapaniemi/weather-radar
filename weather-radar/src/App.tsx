@@ -1,11 +1,14 @@
-import "./App.css";
+import './App.css';
+import CitiesDropdown from './components/CitiesDropdown';
+import Header from './components/Header';
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
-      <h1>ff</h1>
+      <Header />
+      <CitiesDropdown />
     </>
   );
-}
+};
 
 export default App;
