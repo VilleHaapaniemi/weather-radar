@@ -1,7 +1,6 @@
 .header {
   background-color: #ffffff;
-  border: 2px solid #e6e6e6;
-  border-radius: 5px;
+  border-bottom: 2px solid #e6e6e6;
   text-align: center;
 }
 .header h1 {
