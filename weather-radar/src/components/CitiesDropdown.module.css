@@ -1,6 +1,7 @@
 .dropdown {
-  border: 1px solid #e6e6e6;
-  margin: 20pt;
+  border: 2px solid #e6e6e6;
+  border-radius: 5px;
+  margin: 1.5rem 2rem;
 }
 .dropdown select {
   border: none;

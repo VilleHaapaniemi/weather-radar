@@ -1,0 +1,36 @@
+.additionalWeatherData {
+  background-color: #e5f6fd;
+  border-top: 2px solid #e6e6e6;
+  padding: 5px 0px;
+  text-align: center;
+  width: 100%;
+}
+.additionalWeatherData span {
+  color: #70757a;
+  font-size: 10pt;
+}
+.card {
+  align-items: center;
+  border: 2px solid #e6e6e6;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.card img {
+  height: 50px;
+  width: 50px;
+}
+.card span {
+  display: block;
+}
+.card .timeText {
+  color: #70757a;
+  font-size: 13pt;
+  margin-top: 1rem;
+}
+.card .temperatureText {
+  color: #262626;
+  font-size: 15pt;
+  margin-bottom: 1rem;
+}

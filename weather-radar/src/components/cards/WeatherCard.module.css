@@ -1,0 +1,62 @@
+.additionalInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.additionalInfo h3 {
+  color: #262626;
+  font-size: 15pt;
+  font-weight: normal;
+  margin: 0;
+}
+.additionalInfo p {
+  margin: 0;
+}
+.additionalInfo span {
+  color: #70757a;
+  font-size: 13pt;
+  margin: 0;
+}
+.additionalWeatherData {
+  display: flex;
+  flex-direction: column;
+}
+.card {
+  background-color: #ffffff;
+  border: 2px solid #e6e6e6;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem 2rem 1rem 2rem;
+}
+.cityWeather {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.cityWeather h2 {
+  color: #262626;
+  font-size: 19pt;
+  font-weight: normal;
+  margin: 0;
+}
+.cityWeather span {
+  color: #70757a;
+  font-size: 13pt;
+  margin: 0;
+}
+.cityWeather .temperature {
+  display: flex;
+  align-items: center;
+}
+.cityWeather .temperature img {
+  height: 70px;
+  width: 70px;
+}
+.cityWeather .temperature p {
+  color: #262626;
+  font-size: 26pt;
+  margin: 0;
+}
