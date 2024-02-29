@@ -1,6 +1,30 @@
+import { useEffect, useState } from 'react';
+import WeatherService from '../../api/WeatherService';
 import styles from './ForecastCard.module.css';
+import { ForecastData } from '../../types/forecast';
 
 const ForecastCard: React.FC = () => {
+  const [forecastData, setForecastData] = useState<ForecastData | null>(null);
+
+  useEffect(() => {
+    const fetchForecastData = async () => {
+      const numberOfResults = 5;
+      try {
+        const weatherService = new WeatherService();
+        const data: ForecastData = await weatherService.getForecastByCoordinates(61.4991, 23.7871, numberOfResults);
+        setForecastData(data);
+        // setError null
+      } catch (error) {
+        console.error('Failed to fetch weather data', error);
+        // setError
+        setForecastData(null);
+      }
+    };
+    fetchForecastData();
+  }, []);
+
+  console.log(forecastData);
+
   return (
     <article className={styles.card}>
       <span className={styles.timeText}>15:00</span>
