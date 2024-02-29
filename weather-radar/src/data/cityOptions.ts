@@ -1,4 +1,4 @@
-import City from '../types/types';
+import { City } from '../types/types';
 
 const cityOptions: City[] = [
   { name: 'Tampere', lat: 61.4991, lon: 23.7871 },

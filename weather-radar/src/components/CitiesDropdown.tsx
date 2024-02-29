@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import City from '../types/types';
+import { City } from '../types/types';
 import cityOptions from '../data/cityOptions';
 import styles from './CitiesDropdown.module.css';
 
