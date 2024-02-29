@@ -19,6 +19,7 @@
   margin: 0;
 }
 .additionalWeatherData {
+  align-items: flex-end;
   display: flex;
   flex-direction: column;
 }
@@ -28,7 +29,7 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  margin: 1.5rem 2rem 1rem 2rem;
+  margin: 1.5rem 1rem 1rem 1rem;
 }
 .cityWeather {
   display: flex;
@@ -59,4 +60,5 @@
   color: #262626;
   font-size: 26pt;
   margin: 0;
+  margin-right: 1rem;
 }

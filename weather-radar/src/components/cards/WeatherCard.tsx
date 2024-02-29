@@ -2,15 +2,20 @@ import { useEffect, useState } from 'react';
 import WeatherService from '../../api/WeatherService';
 import { WeatherData } from '../../types/weather';
 import styles from './WeatherCard.module.css';
+import { City } from '../../types/types';
 
-const WeatherCard: React.FC = () => {
+interface WeatherCardProps {
+  city: City;
+}
+
+const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
 
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
         const weatherService = new WeatherService();
-        const data: WeatherData = await weatherService.getWeatherByCoordinates(61.4991, 23.7871);
+        const data: WeatherData = await weatherService.getWeatherByCoordinates(city.lat, city.lon);
         setWeatherData(data);
         // setError null
       } catch (error) {
@@ -20,20 +25,29 @@ const WeatherCard: React.FC = () => {
       }
     };
     fetchWeatherData();
-  }, []);
+  }, [city]);
 
-  console.log(weatherData);
+  const firstLetterToUppercase = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  if (weatherData === null) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className={styles.card}>
       <div className={styles.cityWeather}>
         <div>
-          <h2>Espoo</h2>
-          <span>Scattered clouds</span>
+          <h2>{weatherData.name}</h2>
+          <span>{firstLetterToUppercase(weatherData.weather[0].description)}</span>
         </div>
         <div className={styles.temperature}>
-          <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="Weather Image" />
-          <p>0 C</p>
+          <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="Weather Image" />
+          <div style={{ position: 'relative', display: 'inline-block' }}>
+            <p style={celsiusIconStyle}>°C</p>
+            <p>{Math.round(weatherData.main.temp)}</p>
+          </div>
         </div>
       </div>
       <div className={styles.additionalInfo}>
@@ -42,9 +56,9 @@ const WeatherCard: React.FC = () => {
           <span className={styles.graySecondaryText}>11:53</span>
         </div>
         <div className={styles.additionalWeatherData}>
-          <span>Wind</span>
-          <span>Humidity</span>
-          <span>Precipitation</span>
+          <span>{`Wind: ${weatherData.wind.speed} m/s`}</span>
+          <span>{`Humidity: ${weatherData.main.humidity} %`}</span>
+          <span>{`Precipitation (3 h): ${weatherData.rain?.three_hour ?? 0} mm`}</span>
         </div>
       </div>
     </div>
@@ -52,3 +66,12 @@ const WeatherCard: React.FC = () => {
 };
 
 export default WeatherCard;
+
+const celsiusIconStyle = {
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  fontSize: '13pt',
+  textAlign: 'center',
+  transform: 'translate(90%, -20%)',
+} as const;

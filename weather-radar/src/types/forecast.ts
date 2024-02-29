@@ -1,4 +1,4 @@
-export interface WeatherList {
+export interface Forecast {
   dt: number;
   main: {
     temp: number;
@@ -27,6 +27,12 @@ export interface WeatherList {
   };
   visibility: number;
   pop: number;
+  rain?: {
+    three_hours: number;
+  };
+  snow?: {
+    three_hours: number;
+  };
   sys: {
     pod: string;
   };
@@ -37,7 +43,7 @@ export interface ForecastData {
   cod: string;
   message: number;
   cnt: number;
-  list: WeatherList[];
+  list: Forecast[];
   city: {
     id: number;
     name: string;

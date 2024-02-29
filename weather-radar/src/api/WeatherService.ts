@@ -12,7 +12,7 @@ class WeatherService {
     const url = `${this.baseUrl}weather?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric`;
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error('Failed to fetch weather data');
+      throw new Error('Response not OK');
     }
     const data: WeatherData = await response.json();
     return data;
@@ -27,7 +27,7 @@ class WeatherService {
     const url = `${this.baseUrl}forecast?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric&cnt=${count}`;
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error('Failed to fetch forecast data');
+      throw new Error('Response not OK');
     }
     const data: ForecastData = await response.json();
     return data;

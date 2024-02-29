@@ -1,31 +1,27 @@
 import { useState } from 'react';
-import { City } from '../types/types';
-import cityOptions from '../data/cityOptions';
+import { CityOption } from '../types/types';
 import styles from './CitiesDropdown.module.css';
 
-const CitiesDropdown: React.FC = () => {
-  const [selectedCity, setSelectedCity] = useState<City | null>(null);
+interface CitiesDropdownProps {
+  onCityChange: (city: CityOption) => void;
+}
+
+const CitiesDropdown: React.FC<CitiesDropdownProps> = ({ onCityChange }) => {
+  const [selectedCity, setSelectedCity] = useState<CityOption>(CityOption.AllCities);
+  const CityOptionArray = Object.values(CityOption); // Array from city select Enum values
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = event.target.value;
-
-    // Handle the selection of all cities
-    if (selectedValue === 'ALL_CITIES') {
-      setSelectedCity({ name: 'All Cities', lat: 0, lon: 0 });
-    } else {
-      // Find the city object that matches the selected value
-      const selectedCityObject = cityOptions.find((city) => city.name === selectedValue);
-      setSelectedCity(selectedCityObject || null);
-    }
+    const selectedValue = event.target.value as CityOption;
+    setSelectedCity(selectedValue);
+    onCityChange(selectedValue);
   };
 
   return (
     <div className={styles.dropdown}>
-      <select value={selectedCity?.name || ''} onChange={handleChange}>
-        <option value="ALL_CITIES">Kaikki kaupungit</option>
-        {cityOptions.map((option) => (
-          <option key={option.name} value={option.name}>
-            {option.name}
+      <select value={selectedCity} onChange={handleChange}>
+        {CityOptionArray.map((city, index) => (
+          <option key={index} value={city}>
+            {city}
           </option>
         ))}
       </select>

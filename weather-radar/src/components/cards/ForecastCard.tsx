@@ -1,42 +1,39 @@
-import { useEffect, useState } from 'react';
-import WeatherService from '../../api/WeatherService';
 import styles from './ForecastCard.module.css';
-import { ForecastData } from '../../types/forecast';
+import { Forecast } from '../../types/forecast';
 
-const ForecastCard: React.FC = () => {
-  const [forecastData, setForecastData] = useState<ForecastData | null>(null);
+interface ForecastCardProps {
+  forecast: Forecast;
+}
 
-  useEffect(() => {
-    const fetchForecastData = async () => {
-      const numberOfResults = 5;
-      try {
-        const weatherService = new WeatherService();
-        const data: ForecastData = await weatherService.getForecastByCoordinates(61.4991, 23.7871, numberOfResults);
-        setForecastData(data);
-        // setError null
-      } catch (error) {
-        console.error('Failed to fetch weather data', error);
-        // setError
-        setForecastData(null);
-      }
-    };
-    fetchForecastData();
-  }, []);
-
-  console.log(forecastData);
+const ForecastCard: React.FC<ForecastCardProps> = ({ forecast }) => {
+  const formatTime = (dateString: string) => {
+    // Parse only hours and minutes from date string
+    return dateString.substring(11, 16);
+  };
 
   return (
     <article className={styles.card}>
-      <span className={styles.timeText}>15:00</span>
-      <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="Weather Image" />
-      <span className={styles.temperatureText}>-1 C</span>
+      <span className={styles.timeText}>{formatTime(forecast.dt_txt)}</span>
+      <img src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`} alt="Weather Image" />
+      <div style={{ position: 'relative', display: 'inline-block', marginRight: '0.5em' }}>
+        <p style={celsiusIconStyle}>°C</p>
+        <span className={styles.temperatureText}>{Math.round(forecast.main.temp)}</span>
+      </div>
       <div className={styles.additionalWeatherData}>
-        <span>5.2 m/s</span>
-        <span>20 %</span>
-        <span>1 mm</span>
+        <span>{`${forecast.wind.speed} m/s`}</span>
+        <span>{`${forecast.main.humidity} %`}</span>
+        <span>{`${forecast.rain?.three_hours ?? 0} mm`}</span>
       </div>
     </article>
   );
 };
 
 export default ForecastCard;
+
+const celsiusIconStyle = {
+  position: 'absolute',
+  top: 0,
+  right: 0,
+  fontSize: '8pt',
+  transform: 'translate(100%, -100%)',
+} as const;
