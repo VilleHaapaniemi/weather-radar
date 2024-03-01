@@ -3,6 +3,8 @@ import WeatherService from '../../api/WeatherService';
 import { WeatherData } from '../../types/weather';
 import styles from './WeatherCard.module.css';
 import { City } from '../../types/types';
+import { formatHoursAndMinutes, formatMonthAndDayWithOrdinal } from '../../utils/timeUtils';
+import { firstLetterToUppercase } from '../../utils/utils';
 
 interface WeatherCardProps {
   city: City;
@@ -27,10 +29,6 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
     fetchWeatherData();
   }, [city]);
 
-  const firstLetterToUppercase = (string: string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
   if (weatherData === null) {
     return <div>Loading...</div>;
   }
@@ -52,8 +50,8 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
       </div>
       <div className={styles.additionalInfo}>
         <div>
-          <h3>May 2nd</h3>
-          <span className={styles.graySecondaryText}>11:53</span>
+          <h3>{formatMonthAndDayWithOrdinal(weatherData.dt)}</h3>
+          <span className={styles.graySecondaryText}>{formatHoursAndMinutes(weatherData.dt)}</span>
         </div>
         <div className={styles.additionalWeatherData}>
           <span>{`Wind: ${weatherData.wind.speed} m/s`}</span>
