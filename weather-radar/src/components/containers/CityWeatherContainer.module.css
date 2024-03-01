@@ -1,0 +1,7 @@
+/* Media query for wider than Tablet screens */
+@media (min-width: 769px) {
+  .weatherArticle {
+    display: flex;
+    flex-direction: row;
+  }
+}

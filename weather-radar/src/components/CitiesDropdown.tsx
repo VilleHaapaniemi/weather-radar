@@ -21,7 +21,7 @@ const CitiesDropdown: React.FC<CitiesDropdownProps> = ({ onCityChange }) => {
       <select value={selectedCity} onChange={handleChange}>
         {CityOptionArray.map((city, index) => (
           <option key={index} value={city}>
-            {city}
+            <p>{city}</p>
           </option>
         ))}
       </select>
