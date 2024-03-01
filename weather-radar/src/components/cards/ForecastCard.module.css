@@ -11,6 +11,7 @@
 }
 .card {
   align-items: center;
+  background-color: #ffffff;
   border: 2px solid #e6e6e6;
   border-radius: 5px;
   display: flex;

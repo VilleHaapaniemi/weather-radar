@@ -1,19 +1,15 @@
 import styles from './ForecastCard.module.css';
 import { Forecast } from '../../types/forecast';
+import { formatDateStringHoursAndMinutes } from '../../utils/timeUtils';
 
 interface ForecastCardProps {
   forecast: Forecast;
 }
 
 const ForecastCard: React.FC<ForecastCardProps> = ({ forecast }) => {
-  const formatTime = (dateString: string) => {
-    // Parse only hours and minutes from date string
-    return dateString.substring(11, 16);
-  };
-
   return (
     <article className={styles.card}>
-      <span className={styles.timeText}>{formatTime(forecast.dt_txt)}</span>
+      <span className={styles.timeText}>{formatDateStringHoursAndMinutes(forecast.dt_txt)}</span>
       <img src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`} alt="Weather Image" />
       <div style={{ position: 'relative', display: 'inline-block', marginRight: '0.5em' }}>
         <p style={celsiusIconStyle}>°C</p>

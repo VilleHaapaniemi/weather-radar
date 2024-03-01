@@ -3,8 +3,10 @@ import WeatherService from '../../api/WeatherService';
 import { WeatherData } from '../../types/weather';
 import styles from './WeatherCard.module.css';
 import { City } from '../../types/types';
-import { formatHoursAndMinutes, formatMonthAndDayWithOrdinal } from '../../utils/timeUtils';
+import { formatUnixHoursAndMinutes, formatUnixMonthAndDayWithOrdinal } from '../../utils/timeUtils';
 import { firstLetterToUppercase } from '../../utils/utils';
+import WeatherCardLoadingSkeleton from './skeletons/WeatherCardLoadingSkeleton';
+import WeatherCardErrorSkeleton from './skeletons/WeatherCardErrorSkeleton';
 
 interface WeatherCardProps {
   city: City;
@@ -12,25 +14,39 @@ interface WeatherCardProps {
 
 const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchWeatherData = async () => {
+      let timeoutId: NodeJS.Timeout | undefined;
       try {
+        timeoutId = setTimeout(() => {
+          setIsLoading(true); // Set loading state true only if loading takes over 0.5 seconds
+        }, 500);
+
         const weatherService = new WeatherService();
         const data: WeatherData = await weatherService.getWeatherByCoordinates(city.lat, city.lon);
         setWeatherData(data);
-        // setError null
+        setError(false);
       } catch (error) {
         console.error('Failed to fetch weather data', error);
-        // setError
-        setWeatherData(null);
+        setError(true);
+      } finally {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        setIsLoading(false);
       }
     };
     fetchWeatherData();
   }, [city]);
 
-  if (weatherData === null) {
-    return <div>Loading...</div>;
+  if (error) {
+    return <WeatherCardErrorSkeleton />;
+  }
+  if (isLoading || weatherData === null) {
+    return <WeatherCardLoadingSkeleton />; // Render loading skeleton on initial render or after loading has taken over 0.5 seconds
   }
 
   return (
@@ -50,8 +66,8 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
       </div>
       <div className={styles.additionalInfo}>
         <div>
-          <h3>{formatMonthAndDayWithOrdinal(weatherData.dt)}</h3>
-          <span className={styles.graySecondaryText}>{formatHoursAndMinutes(weatherData.dt)}</span>
+          <h3>{formatUnixMonthAndDayWithOrdinal(weatherData.dt)}</h3>
+          <span className={styles.graySecondaryText}>{formatUnixHoursAndMinutes(weatherData.dt)}</span>
         </div>
         <div className={styles.additionalWeatherData}>
           <span>{`Wind: ${weatherData.wind.speed} m/s`}</span>
