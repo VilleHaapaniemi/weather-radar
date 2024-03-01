@@ -24,12 +24,13 @@ class WeatherService {
     if (!this.apiKey) {
       throw new Error('API key is undefined');
     }
-    const url = `${this.baseUrl}forecast?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric&cnt=${count}`;
+    const url = `${this.baseUrl}forecast?lat=${lat}&lon=${lon}&appid=${this.apiKey}&units=metric&cnt=${count + 1}`; // Fetch one extra forecast
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error('Response not OK');
     }
     const data: ForecastData = await response.json();
+    data.list.shift(); // Remove the first forecast time from the list array. The initial forecast time is too soon for our needs.
     return data;
   }
 }
