@@ -6,7 +6,7 @@
 }
 .additionalInfo h3 {
   color: #262626;
-  font-size: 15pt;
+  font-size: 1.25rem;
   font-weight: normal;
   margin: 0;
 }
@@ -15,7 +15,7 @@
 }
 .additionalInfo span {
   color: #70757a;
-  font-size: 13pt;
+  font-size: 1rem;
   margin: 0;
 }
 .additionalWeatherData {
@@ -39,13 +39,13 @@
 }
 .cityWeather h2 {
   color: #262626;
-  font-size: 19pt;
+  font-size: 1.58rem;
   font-weight: normal;
   margin: 0;
 }
 .cityWeather span {
   color: #70757a;
-  font-size: 13pt;
+  font-size: 1rem;
   margin: 0;
 }
 .cityWeather .temperature {
@@ -58,7 +58,7 @@
 }
 .cityWeather .temperature p {
   color: #262626;
-  font-size: 26pt;
+  font-size: 2rem;
   margin: 0;
   margin-right: 1rem;
 }

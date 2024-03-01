@@ -6,7 +6,18 @@
 }
 .header h1 {
   color: #262626;
-  font-size: 26pt;
+  font-size: 2rem;
   font-weight: normal;
   margin: 0;
+}
+
+/* Media query for wider than Mobile screens */
+@media (min-width: 481px) {
+  .header {
+    border: 2px solid #e6e6e6;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-width: 0px 2px 2px 2px;
+    margin: 0rem 1rem;
+  }
 }

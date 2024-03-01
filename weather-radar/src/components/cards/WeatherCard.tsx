@@ -85,7 +85,7 @@ const celsiusIconStyle = {
   position: 'absolute',
   top: 0,
   right: 0,
-  fontSize: '13pt',
+  fontSize: '1rem',
   textAlign: 'center',
   transform: 'translate(90%, -20%)',
 } as const;

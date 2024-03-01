@@ -7,7 +7,7 @@
   border: none;
   border-right: 1rem solid transparent; /* Adds 1rem padding for the dropdown arrow */
   color: #262626;
-  font-size: 13pt;
+  font-size: 1rem;
   padding: 1rem;
   width: 100%;
 }

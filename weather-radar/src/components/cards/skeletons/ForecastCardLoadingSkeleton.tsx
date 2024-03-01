@@ -3,7 +3,7 @@ import styles from '../ForecastCard.module.css';
 const ForecastCardLoadingSkeleton: React.FC = () => {
   return (
     <article className={styles.card}>
-      <span className={styles.timeText} style={{ fontSize: '10pt' }}>
+      <span className={styles.timeText} style={{ fontSize: '0.8rem' }}>
         Loading
       </span>
       <div style={{ height: '50px', width: '50px' }}></div>
@@ -26,6 +26,6 @@ const celsiusIconStyle = {
   position: 'absolute',
   top: 0,
   right: 0,
-  fontSize: '8pt',
+  fontSize: '0.67rem',
   transform: 'translate(100%, -100%)',
 } as const;
