@@ -30,7 +30,7 @@ export const formatUnixHoursAndMinutes = (unixTimestamp: number): string => {
 export const formatUnixMonthAndDayWithOrdinal = (unixTimestamp: number): string => {
   // Returns month as short string value and day with ordinal suffix
   const dateObj = new Date(unixTimestamp * 1000);
-  const monthName = dateObj.toLocaleString('default', { month: 'short' });
+  const monthName = dateObj.toLocaleString('en-US', { month: 'short' }); // Month name formatted always as en-US instead of local
   const day = dateObj.getDate();
   return `${monthName} ${day}${getOrdinalSuffix(day)}`;
 };
