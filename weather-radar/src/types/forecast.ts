@@ -28,10 +28,10 @@ export interface Forecast {
   visibility: number;
   pop: number;
   rain?: {
-    three_hours: number;
+    '3h': number;
   };
   snow?: {
-    three_hours: number;
+    '3h': number;
   };
   sys: {
     pod: string;

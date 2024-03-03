@@ -72,7 +72,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
         <div className={styles.additionalWeatherData}>
           <span>{`Wind: ${weatherData.wind.speed} m/s`}</span>
           <span>{`Humidity: ${weatherData.main.humidity} %`}</span>
-          <span>{`Precipitation (3 h): ${weatherData.rain?.three_hour ?? 0} mm`}</span>
+          <span>{`Precipitation (3 h): ${weatherData.rain?.['3h'] ?? weatherData.snow?.['3h'] ?? 0} mm`}</span>
         </div>
       </div>
     </div>

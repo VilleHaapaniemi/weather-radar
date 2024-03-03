@@ -20,7 +20,7 @@ const ForecastCard: React.FC<ForecastCardProps> = ({ forecast }) => {
       <div className={styles.additionalWeatherData}>
         <span>{`${forecast.wind.speed} m/s`}</span>
         <span>{`${forecast.main.humidity} %`}</span>
-        <span>{`${forecast.rain?.three_hours ?? 0} mm`}</span>
+        <span>{`${forecast.rain?.['3h'] ?? forecast.snow?.['3h'] ?? 0} mm`}</span>
       </div>
     </article>
   );

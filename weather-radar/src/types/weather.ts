@@ -28,12 +28,12 @@ export interface WeatherData {
     all: number;
   };
   rain?: {
-    one_hour: number;
-    three_hour: number;
+    '1h': number;
+    '3h': number;
   };
   snow?: {
-    one_hour: number;
-    three_hour: number;
+    '1h': number;
+    '3h': number;
   };
   dt: number;
   sys: {
