@@ -8,12 +8,14 @@ interface ForecastCardProps {
 
 const ForecastCard: React.FC<ForecastCardProps> = ({ forecast }) => {
   return (
-    <article className={styles.card}>
+    <article className={styles.card} data-testid="forecast-card">
       <span className={styles.timeText}>{formatDateStringHoursAndMinutes(forecast.dt_txt)}</span>
       <img src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`} alt="Weather Image" />
       <div style={{ position: 'relative', display: 'inline-block', marginRight: '0.5em' }}>
         <p style={celsiusIconStyle}>°C</p>
-        <span className={styles.temperatureText}>{Math.round(forecast.main.temp)}</span>
+        <span className={styles.temperatureText} data-testid="forecast-temperature">
+          {Math.round(forecast.main.temp)}
+        </span>
       </div>
       <div className={styles.additionalWeatherData}>
         <span>{`${forecast.wind.speed} m/s`}</span>

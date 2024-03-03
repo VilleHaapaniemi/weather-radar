@@ -14,7 +14,7 @@ const CityWeatherContainer: React.FC<CityWeatherContainerProps> = ({ selectedCit
   return (
     <>
       {cities.map((city, index) => (
-        <article className={styles.weatherArticle} key={index}>
+        <article className={styles.weatherArticle} key={index} data-testid={`weather-article-${index}`}>
           <WeatherCard city={city} />
           <ForecastContainer city={city} />
         </article>

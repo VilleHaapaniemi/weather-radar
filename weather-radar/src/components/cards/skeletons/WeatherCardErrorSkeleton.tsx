@@ -1,7 +1,7 @@
 import styles from '../WeatherCard.module.css';
 
 const WeatherCardErrorSkeleton: React.FC = () => (
-  <div className={styles.card}>
+  <div className={styles.card} data-testid="error-weather-skeleton">
     <div className={styles.cityWeather}>
       <div>
         <h2>Error</h2>

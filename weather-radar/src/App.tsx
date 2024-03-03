@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import CitiesDropdown from './components/CitiesDropdown';
+import CitiesSelect from './components/CitiesSelect';
 import CityWeatherContainer from './components/containers/CityWeatherContainer';
 import Header from './components/Header';
 import { CityOption } from './types/types';
@@ -15,7 +15,7 @@ const App: React.FC = () => {
   return (
     <>
       <Header />
-      <CitiesDropdown onCityChange={handleCityChange} />
+      <CitiesSelect onCityChange={handleCityChange} />
       <CityWeatherContainer selectedCity={selectedCity} />
     </>
   );

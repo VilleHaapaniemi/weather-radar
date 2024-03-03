@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "tests/CitiesSelect.test.tsx", "tests/CityWeatherContainer.test.tsx", "tests/App.test.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

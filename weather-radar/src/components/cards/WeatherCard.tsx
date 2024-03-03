@@ -50,7 +50,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
   }
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} data-testid="weather-card">
       <div className={styles.cityWeather}>
         <div>
           <h2>{weatherData.name}</h2>

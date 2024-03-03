@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { CityOption } from '../types/types';
-import styles from './CitiesDropdown.module.css';
+import styles from './CitiesSelect.module.css';
 
-interface CitiesDropdownProps {
+interface CitiesSelectProps {
   onCityChange: (city: CityOption) => void;
 }
 
-const CitiesDropdown: React.FC<CitiesDropdownProps> = ({ onCityChange }) => {
+const CitiesSelect: React.FC<CitiesSelectProps> = ({ onCityChange }) => {
   const [selectedCity, setSelectedCity] = useState<CityOption>(CityOption.AllCities);
   const CityOptionArray = Object.values(CityOption); // Array from city select Enum values
 
@@ -17,11 +17,11 @@ const CitiesDropdown: React.FC<CitiesDropdownProps> = ({ onCityChange }) => {
   };
 
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.container}>
       <select value={selectedCity} onChange={handleChange}>
         {CityOptionArray.map((city, index) => (
           <option key={index} value={city}>
-            <p>{city}</p>
+            {city}
           </option>
         ))}
       </select>
@@ -29,4 +29,4 @@ const CitiesDropdown: React.FC<CitiesDropdownProps> = ({ onCityChange }) => {
   );
 };
 
-export default CitiesDropdown;
+export default CitiesSelect;
